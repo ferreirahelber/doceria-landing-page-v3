@@ -1,0 +1,652 @@
+/* Importando as fontes do Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&family=Roboto+Condensed:wght@300;400;700&display=swap");
+
+/* ESTILOS PERSONALIZADOS PARA A DOCERIA */
+
+/* Estilo para o slogan "Doces artesanais feitos com amor" */
+.slogan-text {
+  font-family: "Dancing Script", sans-serif; /* Fonte cursiva elegante que transmite artesanalidade */
+  font-size: 2.3rem; /* Tamanho grande para dar destaque ao slogan */
+  color: #ffffff; /* Cor branca para contrastar com o fundo azul-turquesa */
+  text-align: center; /* Centraliza o texto horizontalmente */
+  /* margin-bottom: 10px; /* Espaçamento inferior de 10px */
+  margin: 0; /* zerar todas as margens */
+}
+
+/* Formatação do texto de saudação */
+.greeting-message {
+  background-color: #f978b1; /* Cor de fundo suave  do texto de saudação*/
+  padding: 20px;
+  border-radius: 10px;
+  margin: 0 10%;
+  text-align: center;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 30px; 
+}
+
+/* Formatação do titulo da saudação */
+.greeting-title{
+  font-size: 4rem; /* maior destaque */
+  margin-bottom: 15px;
+  font-weight: bold;
+  font-family: 'Dancing Script', cursive; /* fonte artesanal */
+  /* color: #faf9f8; /* dourado suave */
+}
+
+/* Formatação do paragrafo da saudação */
+.greeting-message p {
+  font-size: 1rem; /* mantém o texto menor */
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* Cor de fundo exclusiva para a seção do carrossel */
+.bg-carousel-custom {
+  background-color: #a37716;
+}
+
+/* Estilo para os títulos das seções (Nossos Deliciosos Doces, Nosso Cardápio) */
+.section-title {
+  font-family: "Playfair Display", serif; /* Fonte elegante e sofisticada para títulos */
+  color: #8B4513; /* Tom de marrom sofisticado que remete a chocolate/café */
+  font-size: 2.25rem; /* Equivale ao text-3xl do Tailwind (36px) */
+  font-weight: bold; /* Texto em negrito para dar destaque */
+  text-align: center; /* Centraliza o texto */
+  margin-bottom: 3rem; /* Espaçamento inferior (equivale ao mb-12 do Tailwind) */
+}
+
+/* Estilo para os títulos dos produtos nos cards */
+.product-card-title {
+  font-family: "Roboto Condensed", sans-serif; /* Fonte condensada e moderna */
+  color: #D2691E; /* Cor de caramelo que transmite doçura e sofisticação */
+  font-size: 1.25rem; /* Equivale ao text-xl do Tailwind (20px) */
+  font-weight: bold; /* Texto em negrito */
+  margin-bottom: 0.5rem; /* Espaçamento inferior (equivale ao mb-2 do Tailwind) */
+}
+
+/* Estilo para as descrições dos produtos nos cards */
+.product-card-description {
+  font-family: "Roboto Condensed", sans-serif; /* Mesma fonte dos títulos para consistência */
+  color: #D2691E; /* Mesma cor caramelo para manter a harmonia visual */
+  font-size: 0.875rem; /* Equivale ao text-sm do Tailwind (14px) */
+  line-height: 1.625; /* Equivale ao leading-relaxed do Tailwind para melhor legibilidade */
+}
+
+/* Classe para aplicar a cor de fundo do cabeçalho */
+.bg-header-background {
+  background-color: #72c5c4; /* Usa a cor diretamente */
+}
+
+/* ESTILOS PARA O CARROSSEL CUSTOMIZADO COM EFEITO DE PILHA */
+
+/* Container principal do carrossel */
+.stacked-carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 60px 0;
+  min-height: 500px;
+  overflow: hidden;
+}
+
+/* Track que contém todos os slides */
+.stacked-carousel-track {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Slide individual */
+.stacked-slide {
+  position: absolute;
+  width: 300px;
+  height: 350px;
+  cursor: pointer;
+  transform-origin: center center;
+}
+
+/* Conteúdo do slide */
+.slide-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+/* Efeito hover no slide ativo */
+.stacked-slide.active .slide-content:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Imagem do slide */
+.slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+/* Efeito hover na imagem */
+.stacked-slide:hover .slide-image {
+  transform: scale(1.05);
+}
+
+/* Overlay com título */
+.slide-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  padding: 40px 20px 20px;
+  color: white;
+}
+
+/* Título do slide */
+.slide-title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Botões de navegação */
+.carousel-nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 100;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  color: #333;
+}
+
+/* Botão esquerdo */
+.carousel-nav-left {
+  left: 30px;
+}
+
+/* Botão direito */
+.carousel-nav-right {
+  right: 30px;
+}
+
+/* Efeito hover nos botões */
+.carousel-nav-button:hover:not(:disabled) {
+  background: white;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+}
+
+/* Botão desabilitado */
+.carousel-nav-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Indicadores de posição */
+.carousel-indicators {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+  z-index: 100;
+}
+
+/* Indicador individual */
+.carousel-indicator {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Indicador ativo */
+.carousel-indicator.active {
+  background: white;
+  transform: scale(1.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Indicador hover */
+.carousel-indicator:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.9);
+  transform: scale(1.2);
+}
+
+/* Indicador desabilitado */
+.carousel-indicator:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Responsividade para tablets */
+@media (max-width: 1024px) {
+  .stacked-carousel-container {
+    max-width: 800px;
+    padding: 40px 0;
+  }
+  
+  .stacked-carousel-track {
+    height: 350px;
+  }
+  
+  .stacked-slide {
+    width: 250px;
+    height: 300px;
+  }
+  
+  .slide-title {
+    font-size: 1.2rem;
+  }
+  
+  .carousel-nav-button {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .carousel-nav-left {
+    left: 20px;
+  }
+  
+  .carousel-nav-right {
+    right: 20px;
+  }
+}
+
+/* Responsividade para mobile */
+@media (max-width: 768px) {
+  .stacked-carousel-container {
+    max-width: 100%;
+    padding: 30px 0;
+    min-height: 400px;
+  }
+  
+  .stacked-carousel-track {
+    height: 280px;
+  }
+  
+  .stacked-slide {
+    width: 200px;
+    height: 250px;
+  }
+  
+  .slide-title {
+    font-size: 1rem;
+  }
+  
+  .carousel-nav-button {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .carousel-nav-left {
+    left: 15px;
+  }
+  
+  .carousel-nav-right {
+    right: 15px;
+  }
+  
+  .carousel-indicator {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .carousel-indicators {
+    gap: 12px;
+  }
+}
+
+.product-card {
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.modal-backdrop {
+  backdrop-filter: blur(8px);
+}
+
+/* Animações suaves */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Gradientes personalizados */
+.gradient-pink-purple {
+  background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+}
+
+.gradient-light {
+  background: linear-gradient(135deg, #fdf2f8 0%, #faf5ff 100%);
+}
+
+/* Estilos para as imagens dos cards de produtos */
+.product-image {
+  width: 100%; /* Garante que a imagem ocupe toda a largura do seu contêiner (w-1/3) */
+  height: 128px; /* Altura fixa para as imagens dos cards (h-32 do Tailwind) */
+  object-fit: cover; /* Corta a imagem para preencher o espaço, mantendo a proporção */
+  object-position: center; /* Centraliza a imagem dentro do espaço */
+}
+
+/* NOVAS ANIMAÇÕES E MELHORIAS DE PERFORMANCE */
+
+/* Animações de entrada suaves para elementos */
+.fade-in-hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.fade-in-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Classes de delay para animações escalonadas */
+.delay-0 { transition-delay: 0ms; }
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
+/* Melhoria no backdrop do modal */
+.modal-backdrop {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Melhorias de acessibilidade para elementos focáveis */
+.stacked-slide:focus {
+  outline: 3px solid #f978b1;
+  outline-offset: 2px;
+}
+
+.carousel-nav-button:focus {
+  outline: 3px solid #f978b1;
+  outline-offset: 2px;
+}
+
+.carousel-indicator:focus {
+  outline: 3px solid #f978b1;
+  outline-offset: 2px;
+}
+
+/* Animação para o botão de call-to-action */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+  }
+  50% {
+    box-shadow: 0 6px 25px rgba(236, 72, 153, 0.5);
+  }
+}
+
+/* Aplicar animação sutil nos botões de pedido */
+.inline-flex:hover {
+  animation: pulse-glow 2s infinite;
+}
+
+/* Melhorias de responsividade para dispositivos muito pequenos */
+@media (max-width: 480px) {
+  .slogan-text {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+  
+  .greeting-message {
+    margin: 0 5%;
+    padding: 15px;
+  }
+  
+  .greeting-title {
+    font-size: 1.8rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+  
+  .stacked-carousel-container {
+    padding: 20px 0;
+    min-height: 350px;
+  }
+  
+  .stacked-carousel-track {
+    height: 250px;
+  }
+  
+  .stacked-slide {
+    width: 180px;
+    height: 220px;
+  }
+  
+  .slide-title {
+    font-size: 0.9rem;
+  }
+  
+  .carousel-nav-button {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .carousel-nav-left {
+    left: 10px;
+  }
+  
+  .carousel-nav-right {
+    right: 10px;
+  }
+}
+
+/* Otimizações de performance para animações */
+.stacked-slide,
+.slide-content,
+.slide-image {
+  will-change: transform;
+}
+
+/* Preload de imagens críticas */
+.slide-image,
+.product-image {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Melhorias no contraste para acessibilidade */
+@media (prefers-contrast: high) {
+  .carousel-nav-button {
+    background: white;
+    border: 2px solid #333;
+  }
+  
+  .carousel-indicator {
+    border: 2px solid #333;
+  }
+  
+  .carousel-indicator.active {
+    background: #333;
+  }
+}
+
+/* Suporte para usuários que preferem movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in-hidden,
+  .fade-in-visible,
+  .stacked-slide,
+  .slide-content,
+  .carousel-nav-button,
+  .carousel-indicator {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .stacked-carousel-container {
+    /* Desabilita auto-play para usuários sensíveis a movimento */
+  }
+}
+
+/* Melhorias no foco para navegação por teclado */
+*:focus {
+  outline-color: #f978b1;
+  outline-width: 2px;
+  outline-style: solid;
+  outline-offset: 2px;
+}
+
+/* Estilo para links com melhor contraste */
+a:focus {
+  outline: 3px solid #f978b1;
+  outline-offset: 2px;
+}
+
+
+
+/* NOVOS ESTILOS PARA O CABEÇALHO E LOGO */
+
+/* Estilo personalizado para a logo no cabeçalho */
+.logo-header {
+  height: 280px; /* NOVO: Logo maior que a altura da faixa turquesa (que tem cerca de 200px) */
+  width: auto; /* Mantém a proporção da imagem */
+  z-index: 10; /* Garante que a logo fique acima de outros elementos */
+  position: relative;
+  transition: transform 0.3s ease; /* Animação suave para hover */
+}
+
+/* Efeito hover na logo */
+.logo-header:hover {
+  transform: scale(1.05); /* Leve aumento no hover */
+}
+
+/* Container do slogan ajustado para o novo layout */
+.slogan-container {
+  margin-left: 1rem; /* Espaçamento entre logo e slogan */
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+/* Ajustes no slogan para o novo layout */
+.slogan-text {
+  font-family: "Dancing Script", sans-serif;
+  font-size: 42px; /* Ligeiramente menor para equilibrar com a logo maior */
+  color: #ffffff;
+  text-align: left; /* MODIFICADO: Alinhamento à esquerda */
+  margin: 0;
+  line-height: 1.2; /* Melhora o espaçamento das linhas */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra para melhor legibilidade */
+}
+
+/* Ajustes no cabeçalho para acomodar a logo maior */
+.bg-header-background {
+  background-color: #72c5c4;
+  min-height: 180px; /* NOVO: Altura mínima para acomodar a logo maior */
+  display: flex;
+  align-items: center;
+}
+
+/* Responsividade para o novo layout do cabeçalho */
+@media (max-width: 1024px) {
+  .logo-header {
+    height: 240px; /* Logo um pouco menor em tablets */
+  }
+  
+  .slogan-text {
+    font-size: 36px;
+  }
+  
+  .bg-header-background {
+    min-height: 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo-header {
+    height: 200px; /* Logo menor em mobile */
+  }
+  
+  .slogan-text {
+    font-size: 28px;
+  }
+  
+  .slogan-container {
+    margin-left: 0.5rem;
+  }
+  
+  .bg-header-background {
+    min-height: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Layout empilhado em telas muito pequenas */
+  .flex.justify-start.items-center > div {
+    flex-direction: column;
+    align-items: flex-start;
+    space-x: 0;
+  }
+  
+  .logo-header {
+    height: 160px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .slogan-text {
+    font-size: 24px;
+    text-align: left;
+  }
+  
+  .slogan-container {
+    margin-left: 0;
+  }
+  
+  .bg-header-background {
+    min-height: 120px;
+    padding: 1rem 0;
+  }
+}
+
