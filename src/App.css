@@ -3,35 +3,41 @@
 
 /* ESTILOS PERSONALIZADOS PARA A DOCERIA */
 
-/* ESTILOS DO CABEÇALHO */
-/* Cabeçalho com overflow visible para permitir que a logo saia dos limites */
-.bg-header-background {
-  background-color: #72c5c4;
-  overflow: visible; /* Permite que elementos saiam dos limites do cabeçalho */
+/* Variáveis CSS para controle do tamanho e posição da logo */
+:root {
+  --logo-size: 200px; /* Tamanho desejado da logo */
+  --logo-left-offset: 20px; /* Distância da logo da borda esquerda */
+  --header-min-height: 150px; /* Altura mínima do cabeçalho */
 }
 
-/* Container do cabeçalho */
+/* ESTILOS DO CABEÇALHO */
+.bg-header-background {
+  background-color: #72c5c4;
+  overflow: visible; /* Esconde qualquer conteúdo que transborde */
+}
+
 .header-container {
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 1rem 1rem 1rem calc(var(--logo-size) + var(--logo-left-offset) + 0px); /* Ajusta padding para acomodar a logo */
   display: flex;
   align-items: center;
-  min-height: 120px; /* Altura mínima para acomodar a logo */
-  overflow: visible; /* Permite que a logo saia dos limites */
+  min-height: var(--header-min-height); /* Altura mínima do cabeçalho */
 }
 
 /* Estilo da logo no cabeçalho */
 .logo-header {
   position: absolute;
-  left: 80px; /* Posicionamento à esquerda, mas não muito à esquerda */
-  top: -50px; /* Metade da logo (50px) fica para fora do cabeçalho pela parte superior */
-  width: 100px; /* Tamanho da logo */
-  height: 100px; /* Altura da logo */
-  object-fit: contain; /* Mantém a proporção da logo */
-  z-index: 10; /* Fica acima do conteúdo */
+  width: var(--logo-size);
+  height: auto; /* mantém proporção */
+  left: var(--logo-left-offset);
+  /* ESTA É A LINHA QUE CRIA O EFEITO METADE PARA FORA */
+  bottom: calc(var(--logo-size) / -2);
+  object-fit: contain;
+  z-index: 10;
 }
+
 
 /* Container do slogan */
 .slogan-container {
@@ -39,43 +45,44 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 200px; /* Espaço para a logo */
+  /* Remove margin-left para que o flexbox centralize corretamente */
+  margin-left: 0;
 }
 
 /* Estilo para o slogan "Doces artesanais feitos com amor" */
 .slogan-text {
-  font-family: "Dancing Script", sans-serif; /* Fonte cursiva elegante que transmite artesanalidade */
-  font-size: 3.5rem; /* Tamanho aumentado (era 45px, agora 56px) */
-  color: #ffffff; /* Cor branca para contrastar com o fundo azul-turquesa */
-  text-align: center; /* Centraliza o texto horizontalmente */
-  margin: 0; /* zerar todas as margens */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra no texto para melhor legibilidade */
-  line-height: 1.2; /* Melhor espaçamento entre linhas */
+  font-family: "Dancing Script", sans-serif;
+  font-size: 3.5rem;
+  color: #ffffff;
+  text-align: center;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  line-height: 1.2;
 }
 
 /* Formatação do texto de saudação */
 .greeting-message {
-  background-color: #f978b1; /* Cor de fundo suave  do texto de saudação*/
+  background-color: #f978b1;
   padding: 20px;
   border-radius: 10px;
   margin: 0 10%;
   text-align: center;
   color: white;
   font-family: 'Montserrat', sans-serif;
-  margin-top: 80px; /* Aumentado para dar espaço para a logo que sai do cabeçalho */
+  margin-top: 80px;
 }
 
 /* Formatação do titulo da saudação */
 .greeting-title{
-  font-size: 2.3rem; /* maior destaque */
+  font-size: 2.3rem;
   margin-bottom: 15px;
   font-weight: bold;
-  font-family: 'Dancing Script', cursive; /* fonte artesanal */
+  font-family: 'Dancing Script', cursive;
 }
 
 /* Formatação do paragrafo da saudação */
 .greeting-message p {
-  font-size: 1rem; /* mantém o texto menor */
+  font-size: 1rem;
   margin-bottom: 10px;
   line-height: 1.6;
 }
@@ -87,29 +94,29 @@
 
 /* Estilo para os títulos das seções (Nossos Deliciosos Doces, Nosso Cardápio) */
 .section-title {
-  font-family: "Playfair Display", serif; /* Fonte elegante e sofisticada para títulos */
-  color: #8B4513; /* Tom de marrom sofisticado que remete a chocolate/café */
-  font-size: 2.25rem; /* Equivale ao text-3xl do Tailwind (36px) */
-  font-weight: bold; /* Texto em negrito para dar destaque */
-  text-align: center; /* Centraliza o texto */
-  margin-bottom: 3rem; /* Espaçamento inferior (equivale ao mb-12 do Tailwind) */
+  font-family: "Playfair Display", serif;
+  color: #8B4513;
+  font-size: 2.25rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
 /* Estilo para os títulos dos produtos nos cards */
 .product-card-title {
-  font-family: "Roboto Condensed", sans-serif; /* Fonte condensada e moderna */
-  color: #D2691E; /* Cor de caramelo que transmite doçura e sofisticação */
-  font-size: 1.25rem; /* Equivale ao text-xl do Tailwind (20px) */
-  font-weight: bold; /* Texto em negrito */
-  margin-bottom: 0.5rem; /* Espaçamento inferior (equivale ao mb-2 do Tailwind) */
+  font-family: "Roboto Condensed", sans-serif;
+  color: #D2691E;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
 }
 
 /* Estilo para as descrições dos produtos nos cards */
 .product-card-description {
-  font-family: "Roboto Condensed", sans-serif; /* Mesma fonte dos títulos para consistência */
-  color: #D2691E; /* Mesma cor caramelo para manter a harmonia visual */
-  font-size: 0.875rem; /* Equivale ao text-sm do Tailwind (14px) */
-  line-height: 1.625; /* Equivale ao leading-relaxed do Tailwind para melhor legibilidade */
+  font-family: "Roboto Condensed", sans-serif;
+  color: #D2691E;
+  font-size: 0.875rem;
+  line-height: 1.625;
 }
 
 /* ESTILOS PARA O CARROSSEL CUSTOMIZADO COM EFEITO DE PILHA */
@@ -285,118 +292,42 @@
 
 /* Responsividade para tablets */
 @media (max-width: 1024px) {
-  .header-container {
-    min-height: 100px;
+  :root {
+    --logo-size: 150px;
+    --logo-left-offset: 15px;
+    --header-min-height: 120px;
   }
-  
-  .logo-header {
-    left: 60px;
-    width: 90px;
-    height: 90px;
-    top: -45px; /* Ajuste proporcional para tablets */
-  }
-  
-  .slogan-container {
-    margin-left: 170px;
-  }
-  
+
   .slogan-text {
-    font-size: 2.8rem; /* Reduz um pouco em tablets */
-  }
-  
-  .greeting-message {
-    margin-top: 70px; /* Ajuste para tablets */
-  }
-  
-  .stacked-carousel-container {
-    max-width: 800px;
-    padding: 40px 0;
-  }
-  
-  .stacked-carousel-track {
-    height: 350px;
-  }
-  
-  .stacked-slide {
-    width: 250px;
-    height: 300px;
-  }
-  
-  .slide-title {
-    font-size: 1.2rem;
-  }
-  
-  .carousel-nav-button {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .carousel-nav-left {
-    left: 20px;
-  }
-  
-  .carousel-nav-right {
-    right: 20px;
+    font-size: 2.8rem;
   }
 }
 
 /* Responsividade para mobile */
 @media (max-width: 768px) {
+  :root {
+    --logo-size: 100px;
+    --logo-left-offset: 10px;
+    --header-min-height: 100px;
+  }
+
   .header-container {
     flex-direction: column;
-    min-height: 140px;
     padding: 1rem 0.5rem;
   }
-  
+
   .logo-header {
     position: static;
-    width: 80px;
-    height: 80px;
     margin-bottom: 1rem;
+    transform: none;
   }
-  
+
   .slogan-container {
     margin-left: 0;
   }
-  
+
   .slogan-text {
-    font-size: 2.2rem; /* Menor em mobile */
-  }
-  
-  .greeting-message {
-    margin-top: 30px; /* Volta ao normal em mobile */
-  }
-  
-  .stacked-carousel-container {
-    max-width: 100%;
-    padding: 30px 0;
-    min-height: 400px;
-  }
-  
-  .stacked-carousel-track {
-    height: 280px;
-  }
-  
-  .stacked-slide {
-    width: 200px;
-    height: 250px;
-  }
-  
-  .slide-title {
-    font-size: 1rem;
-  }
-  
-  .carousel-nav-button {
-    width: 45px;
-    height: 45px;
-  }
-  
-  .carousel-nav-left {
-    left: 15px;
-  }
-  
-  .carousel-nav-right {
-    right: 15px;
+    font-size: 2.2rem;
   }
 }
 
@@ -440,10 +371,10 @@
 
 /* Estilos para as imagens dos cards de produtos */
 .product-image {
-  width: 100%; /* Garante que a imagem ocupe toda a largura do seu contêiner (w-1/3) */
-  height: 128px; /* Altura fixa para as imagens dos cards (h-32 do Tailwind) */
-  object-fit: cover; /* Corta a imagem para preencher o espaço, mantendo a proporção */
-  object-position: center; /* Centraliza a imagem dentro do espaço */
+  width: 100%;
+  height: 128px;
+  object-fit: cover;
+  object-position: center;
 }
 
 /* NOVAS ANIMAÇÕES E MELHORIAS DE PERFORMANCE */
@@ -508,7 +439,7 @@
 /* Melhorias de responsividade para dispositivos muito pequenos */
 @media (max-width: 480px) {
   .slogan-text {
-    font-size: 1.8rem; /* Ainda menor para telas muito pequenas */
+    font-size: 1.8rem;
     line-height: 1.2;
   }
   
@@ -530,65 +461,4 @@
     padding: 20px 0;
     min-height: 350px;
   }
-  
-  .stacked-carousel-track {
-    height: 250px;
-  }
-  
-  .stacked-slide {
-    width: 180px;
-    height: 220px;
-  }
-  
-  .slide-title {
-    font-size: 0.9rem;
-  }
-  
-  .carousel-nav-button {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .carousel-nav-left {
-    left: 10px;
-  }
-  
-  .carousel-nav-right {
-    right: 10px;
-  }
 }
-
-/* Otimizações de performance para animações */
-.stacked-slide,
-.slide-content,
-.slide-image {
-  will-change: transform;
-}
-
-/* Preload de imagens críticas */
-.slide-image,
-.product-image {
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-}
-
-/* Melhorias no contraste para acessibilidade */
-
-/* Correção mínima para o efeito da logo no cabeçalho */
-
-/* Garante que elementos absolutos possam sair dos limites do cabeçalho */
-.bg-header-background { overflow: visible; }
-
-/* Mantém o container como referência para o posicionamento absoluto */
-.header-container { position: relative; }
-
-/* Faz a logo sair pela base do cabeçalho (metade dentro, metade fora) */
-.logo-header {
-  position: absolute;
-  top: auto !important;     /* remove qualquer top anterior */
-  transform: none !important; /* remove translateY se existir */
-  bottom: -50px !important; /* 50px para fora (metade de 100px) */
-}
-
-/* Opcional: se a logo encostar no texto abaixo, aumente o espaçamento da primeira seção */
-/* .first-section { margin-top: 60px; }  Aplique esta classe em <section> se necessário */
