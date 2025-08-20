@@ -3,14 +3,54 @@
 
 /* ESTILOS PERSONALIZADOS PARA A DOCERIA */
 
+/* ESTILOS DO CABEÇALHO */
+/* Cabeçalho com overflow visible para permitir que a logo saia dos limites */
+.bg-header-background {
+  background-color: #72c5c4;
+  overflow: visible; /* Permite que elementos saiam dos limites do cabeçalho */
+}
+
+/* Container do cabeçalho */
+.header-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  min-height: 120px; /* Altura mínima para acomodar a logo */
+  overflow: visible; /* Permite que a logo saia dos limites */
+}
+
+/* Estilo da logo no cabeçalho */
+.logo-header {
+  position: absolute;
+  left: 80px; /* Posicionamento à esquerda, mas não muito à esquerda */
+  top: -50px; /* Metade da logo (50px) fica para fora do cabeçalho pela parte superior */
+  width: 100px; /* Tamanho da logo */
+  height: 100px; /* Altura da logo */
+  object-fit: contain; /* Mantém a proporção da logo */
+  z-index: 10; /* Fica acima do conteúdo */
+}
+
+/* Container do slogan */
+.slogan-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 200px; /* Espaço para a logo */
+}
+
 /* Estilo para o slogan "Doces artesanais feitos com amor" */
 .slogan-text {
   font-family: "Dancing Script", sans-serif; /* Fonte cursiva elegante que transmite artesanalidade */
-  font-size: 2.3rem; /* Tamanho grande para dar destaque ao slogan */
+  font-size: 3.5rem; /* Tamanho aumentado (era 45px, agora 56px) */
   color: #ffffff; /* Cor branca para contrastar com o fundo azul-turquesa */
   text-align: center; /* Centraliza o texto horizontalmente */
-  /* margin-bottom: 10px; /* Espaçamento inferior de 10px */
   margin: 0; /* zerar todas as margens */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra no texto para melhor legibilidade */
+  line-height: 1.2; /* Melhor espaçamento entre linhas */
 }
 
 /* Formatação do texto de saudação */
@@ -22,16 +62,15 @@
   text-align: center;
   color: white;
   font-family: 'Montserrat', sans-serif;
-  margin-top: 30px; 
+  margin-top: 80px; /* Aumentado para dar espaço para a logo que sai do cabeçalho */
 }
 
 /* Formatação do titulo da saudação */
 .greeting-title{
-  font-size: 4rem; /* maior destaque */
+  font-size: 2.3rem; /* maior destaque */
   margin-bottom: 15px;
   font-weight: bold;
   font-family: 'Dancing Script', cursive; /* fonte artesanal */
-  /* color: #faf9f8; /* dourado suave */
 }
 
 /* Formatação do paragrafo da saudação */
@@ -71,11 +110,6 @@
   color: #D2691E; /* Mesma cor caramelo para manter a harmonia visual */
   font-size: 0.875rem; /* Equivale ao text-sm do Tailwind (14px) */
   line-height: 1.625; /* Equivale ao leading-relaxed do Tailwind para melhor legibilidade */
-}
-
-/* Classe para aplicar a cor de fundo do cabeçalho */
-.bg-header-background {
-  background-color: #72c5c4; /* Usa a cor diretamente */
 }
 
 /* ESTILOS PARA O CARROSSEL CUSTOMIZADO COM EFEITO DE PILHA */
@@ -247,8 +281,33 @@
   cursor: not-allowed;
 }
 
+/* RESPONSIVIDADE */
+
 /* Responsividade para tablets */
 @media (max-width: 1024px) {
+  .header-container {
+    min-height: 100px;
+  }
+  
+  .logo-header {
+    left: 60px;
+    width: 90px;
+    height: 90px;
+    top: -45px; /* Ajuste proporcional para tablets */
+  }
+  
+  .slogan-container {
+    margin-left: 170px;
+  }
+  
+  .slogan-text {
+    font-size: 2.8rem; /* Reduz um pouco em tablets */
+  }
+  
+  .greeting-message {
+    margin-top: 70px; /* Ajuste para tablets */
+  }
+  
   .stacked-carousel-container {
     max-width: 800px;
     padding: 40px 0;
@@ -283,6 +342,31 @@
 
 /* Responsividade para mobile */
 @media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    min-height: 140px;
+    padding: 1rem 0.5rem;
+  }
+  
+  .logo-header {
+    position: static;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+  }
+  
+  .slogan-container {
+    margin-left: 0;
+  }
+  
+  .slogan-text {
+    font-size: 2.2rem; /* Menor em mobile */
+  }
+  
+  .greeting-message {
+    margin-top: 30px; /* Volta ao normal em mobile */
+  }
+  
   .stacked-carousel-container {
     max-width: 100%;
     padding: 30px 0;
@@ -313,15 +397,6 @@
   
   .carousel-nav-right {
     right: 15px;
-  }
-  
-  .carousel-indicator {
-    width: 12px;
-    height: 12px;
-  }
-  
-  .carousel-indicators {
-    gap: 12px;
   }
 }
 
@@ -433,7 +508,7 @@
 /* Melhorias de responsividade para dispositivos muito pequenos */
 @media (max-width: 480px) {
   .slogan-text {
-    font-size: 32px;
+    font-size: 1.8rem; /* Ainda menor para telas muito pequenas */
     line-height: 1.2;
   }
   
@@ -498,155 +573,22 @@
 }
 
 /* Melhorias no contraste para acessibilidade */
-@media (prefers-contrast: high) {
-  .carousel-nav-button {
-    background: white;
-    border: 2px solid #333;
-  }
-  
-  .carousel-indicator {
-    border: 2px solid #333;
-  }
-  
-  .carousel-indicator.active {
-    background: #333;
-  }
-}
 
-/* Suporte para usuários que preferem movimento reduzido */
-@media (prefers-reduced-motion: reduce) {
-  .fade-in-hidden,
-  .fade-in-visible,
-  .stacked-slide,
-  .slide-content,
-  .carousel-nav-button,
-  .carousel-indicator {
-    transition: none !important;
-    animation: none !important;
-  }
-  
-  .stacked-carousel-container {
-    /* Desabilita auto-play para usuários sensíveis a movimento */
-  }
-}
+/* Correção mínima para o efeito da logo no cabeçalho */
 
-/* Melhorias no foco para navegação por teclado */
-*:focus {
-  outline-color: #f978b1;
-  outline-width: 2px;
-  outline-style: solid;
-  outline-offset: 2px;
-}
+/* Garante que elementos absolutos possam sair dos limites do cabeçalho */
+.bg-header-background { overflow: visible; }
 
-/* Estilo para links com melhor contraste */
-a:focus {
-  outline: 3px solid #f978b1;
-  outline-offset: 2px;
-}
+/* Mantém o container como referência para o posicionamento absoluto */
+.header-container { position: relative; }
 
-
-
-/* NOVOS ESTILOS PARA O CABEÇALHO E LOGO */
-
-/* Estilo personalizado para a logo no cabeçalho */
+/* Faz a logo sair pela base do cabeçalho (metade dentro, metade fora) */
 .logo-header {
-  height: 280px; /* NOVO: Logo maior que a altura da faixa turquesa (que tem cerca de 200px) */
-  width: auto; /* Mantém a proporção da imagem */
-  z-index: 10; /* Garante que a logo fique acima de outros elementos */
-  position: relative;
-  transition: transform 0.3s ease; /* Animação suave para hover */
+  position: absolute;
+  top: auto !important;     /* remove qualquer top anterior */
+  transform: none !important; /* remove translateY se existir */
+  bottom: -50px !important; /* 50px para fora (metade de 100px) */
 }
 
-/* Efeito hover na logo */
-.logo-header:hover {
-  transform: scale(1.05); /* Leve aumento no hover */
-}
-
-/* Container do slogan ajustado para o novo layout */
-.slogan-container {
-  margin-left: 1rem; /* Espaçamento entre logo e slogan */
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-
-/* Ajustes no slogan para o novo layout */
-.slogan-text {
-  font-family: "Dancing Script", sans-serif;
-  font-size: 42px; /* Ligeiramente menor para equilibrar com a logo maior */
-  color: #ffffff;
-  text-align: left; /* MODIFICADO: Alinhamento à esquerda */
-  margin: 0;
-  line-height: 1.2; /* Melhora o espaçamento das linhas */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra para melhor legibilidade */
-}
-
-/* Ajustes no cabeçalho para acomodar a logo maior */
-.bg-header-background {
-  background-color: #72c5c4;
-  min-height: 180px; /* NOVO: Altura mínima para acomodar a logo maior */
-  display: flex;
-  align-items: center;
-}
-
-/* Responsividade para o novo layout do cabeçalho */
-@media (max-width: 1024px) {
-  .logo-header {
-    height: 240px; /* Logo um pouco menor em tablets */
-  }
-  
-  .slogan-text {
-    font-size: 36px;
-  }
-  
-  .bg-header-background {
-    min-height: 160px;
-  }
-}
-
-@media (max-width: 768px) {
-  .logo-header {
-    height: 200px; /* Logo menor em mobile */
-  }
-  
-  .slogan-text {
-    font-size: 28px;
-  }
-  
-  .slogan-container {
-    margin-left: 0.5rem;
-  }
-  
-  .bg-header-background {
-    min-height: 140px;
-  }
-}
-
-@media (max-width: 480px) {
-  /* Layout empilhado em telas muito pequenas */
-  .flex.justify-start.items-center > div {
-    flex-direction: column;
-    align-items: flex-start;
-    space-x: 0;
-  }
-  
-  .logo-header {
-    height: 160px;
-    margin-bottom: 0.5rem;
-  }
-  
-  .slogan-text {
-    font-size: 24px;
-    text-align: left;
-  }
-  
-  .slogan-container {
-    margin-left: 0;
-  }
-  
-  .bg-header-background {
-    min-height: 120px;
-    padding: 1rem 0;
-  }
-}
-
+/* Opcional: se a logo encostar no texto abaixo, aumente o espaçamento da primeira seção */
+/* .first-section { margin-top: 60px; }  Aplique esta classe em <section> se necessário */

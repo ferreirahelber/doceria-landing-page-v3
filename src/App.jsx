@@ -219,19 +219,22 @@ function App() {
     <div className="min-h-screen">
       
       {/* CABEÇALHO */}
-      <header className="bg-header-background shadow-lg">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center">
+      <header className="bg-header-background relative shadow-lg">
+        {/* container para alinhar o conteúdo */}
+          <div className="header-container">
+            {/* Logo — fica meio dentro e meio fora do fundo */}
             <img 
               src={logo} 
               alt="Logo da Dodoce's" 
-              style={{ width: '300px', marginRight: '180px', marginLeft: '-200px' }}
+              className="logo-header"
             />
-            <p className="slogan-text">
-              Doces artesanais feitos com amor.
-            </p>
+            {/* Slogan — aparece ao lado da logo em telas grandes */}
+            <div className="slogan-container">
+              <span className="slogan-text">
+                Doces artesanais feitos com amor.
+              </span>
+            </div>
           </div>
-        </div>
       </header>
 
       {/* NOVO CARROSSEL COM EFEITO DE PILHA */}
