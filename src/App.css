@@ -63,31 +63,72 @@
 }
 
 /* Formatação do texto de saudação */
-.greeting-message {
-  background-color: #f978b1;
-  padding: 20px;
-  border-radius: 10px;
-  margin: 0 10%;
-  text-align: center;
+.slogan-text {
+ font-family: "Dancing Script", sans-serif;
+ font-size: 3.5rem;
+ color: #ffffff;
+ text-align: center;
+ margin: 0;
+ text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+ line-height: 1.2;
+}
+
+/* ========================================= */
+/* ESTILOS PARA A NOVA SEÇÃO DE SAUDAÇÃO     */
+/* ========================================= */
+
+.greeting-container {
+  display: flex;
+  flex-wrap: wrap; /* Permite que os itens quebrem para a linha de baixo em telas pequenas */
+  gap: 30px; /* Espaço entre o texto e a imagem */
+  align-items: center; /* Centraliza verticalmente o texto e a imagem */
+  background-color: #f978b1; /* Cor de fundo rosa */
+  padding: 40px; /* Preenchimento interno */
+  
+  margin: 80px 0 0; /* Margem superior, centralizado, sem margem inferior */
+  
   color: white;
-  font-family: 'Montserrat', sans-serif;
-  margin-top: 80px;
+  font-family: 'Roboto Condensed', sans-serif;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-/* Formatação do titulo da saudação */
-.greeting-title{
-  font-size: 2.3rem;
-  margin-bottom: 15px;
-  font-weight: bold;
+.greeting-text {
+  flex: 1; /* Ocupa o espaço flexível disponível */
+  min-width: 300px; /* Largura mínima para o bloco de texto antes de quebrar a linha */
+}
+
+.greeting-image-container {
+  flex-basis: 280px; /* Largura base do container da imagem */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.greeting-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px; /* Bordas arredondadas para a foto */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+}
+
+/* Formatação do título da saudação (aumentando o tamanho) */
+.greeting-text h2 {
+  font-size: 3.5rem; /* Aumentei o tamanho da fonte */
+  margin-bottom: 20px;
+  font-weight: 700; /* Usei 700 para negrito forte */
   font-family: 'Dancing Script', cursive;
+  line-height: 1.1;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
-/* Formatação do paragrafo da saudação */
-.greeting-message p {
+/* Formatação do parágrafo da saudação */
+.greeting-text p {
   font-size: 1rem;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   line-height: 1.6;
 }
+
 
 /* Cor de fundo exclusiva para a seção do carrossel */
 .bg-carousel-custom {

@@ -16,6 +16,7 @@ import brigadeiro1 from './assets/bolopote2.jpeg';
 import torta1 from './assets/morango1.jpeg';
 import sobremesa1 from './assets/morango2.jpeg';
 import sobremesa2 from './assets/morango3.jpeg';
+import karenBandeira from './assets/Doceira.png';
 
 // DADOS DO CARROSSEL - Estrutura de dados para o novo carrossel
 const carouselData = [
@@ -243,28 +244,41 @@ function App() {
 
           {/* Carrossel customizado */}
           <StackedCarousel />
-
-          {/* Mensagem de saudação */}
-          <div className="greeting-message">
-            <h2>Bem-vindos à Dodoce's!</h2>
-            <p>
-              Sou uma empreendedora apaixonada por transformar ingredientes selecionados
-              em doces que encantam e conquistam paladares. Na Dodoce's, cada produto é
-              confeccionado de forma artesanal, com todo o carinho e dedicação, pensando
-              em levar até você uma experiência única. Cada sabor é cuidadosamente
-              escolhido para garantir a melhor qualidade e aquele gostinho de feito em casa.
-            </p>
-            <p>
-              Se você busca doces que além de sabor trazem amor em cada pedaço, está no
-              lugar certo. Seja um bombom, um bolo ou qualquer outra delícia, tudo é
-              preparado como se fosse para alguém da família.
-            </p>
-            <p>
-              Bem-vindos à Dodoce's, onde o doce é feito com o coração!
-            </p>
-            <p><strong>por Karen Bandeira</strong></p>
-          </div>
         </div>
+          {/* Mensagem de saudação */}
+          <div className="greeting-container">
+            {/* Bloco de Texto */}
+            <div className="greeting-text">
+              <h2>Bem-vindos à Dodoce's!</h2>
+              <p>
+                Sou uma empreendedora apaixonada por transformar ingredientes selecionados
+                em doces que encantam e conquistam paladares. Na Dodoce's, cada produto é
+                confeccionado de forma artesanal, com todo o carinho e dedicação, pensando
+                em levar até você uma experiência única. Cada sabor é cuidadosamente
+                escolhido para garantir a melhor qualidade e aquele gostinho de feito em casa.
+              </p>
+              <p>
+                Se você busca doces que além de sabor trazem amor em cada pedaço, está no
+                lugar certo. Seja um bombom, um bolo ou qualquer outra delícia, tudo é
+                preparado como se fosse para alguém da família.
+              </p>
+              <p>
+                Bem-vindos à Dodoce's, onde o doce é feito com o coração!
+              </p>
+              <p><strong>por Karen Bandeira</strong></p>
+            </div>
+            
+            {/* Bloco da Imagem */}
+            <div className="greeting-image-container">
+              <img 
+                src={karenBandeira} 
+                alt="Karen Bandeira, a doceira" 
+                className="greeting-image"
+              />
+            </div>
+          </div>
+          {/* ================================================================== */}
+        
       </section>
 
       {/* MENU DE PRODUTOS */}
