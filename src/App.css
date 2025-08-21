@@ -5,8 +5,8 @@
 
 /* Variáveis CSS para controle do tamanho e posição da logo */
 :root {
-  --logo-size: 200px; /* Tamanho desejado da logo */
-  --logo-left-offset: 20px; /* Distância da logo da borda esquerda */
+  --logo-size: 250px; /* Tamanho desejado da logo */
+  --logo-left-offset: -25px; /* Distância da logo da borda esquerda */
   --header-min-height: 150px; /* Altura mínima do cabeçalho */
 }
 
@@ -43,10 +43,12 @@
 .slogan-container {
   flex: 1;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   /* Remove margin-left para que o flexbox centralize corretamente */
-  margin-left: 0;
+  margin-left: 30px;
+  position: relative;
+  top: 25px; /* Este valor (ex: 20px, 30px) até o alinhamento ficar perfeito */
 }
 
 /* Estilo para o slogan "Doces artesanais feitos com amor" */
