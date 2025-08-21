@@ -80,21 +80,21 @@
 .greeting-container {
   display: flex;
   flex-wrap: wrap; /* Permite que os itens quebrem para a linha de baixo em telas pequenas */
-  gap: 30px; /* Espaço entre o texto e a imagem */
+  gap: 40px; /* Espaço entre o texto e a imagem */
   align-items: center; /* Centraliza verticalmente o texto e a imagem */
-  background-color: #f978b1; /* Cor de fundo rosa */
-  padding: 40px; /* Preenchimento interno */
-  
+  justify-content: center; /* centralizar o conteúdo como um grupo */
+  background-color: #f978b1; /* Cor de fundo rosa */  
   margin: 80px 0 0; /* Margem superior, centralizado, sem margem inferior */
-  
+  /*padding: 40px; /* Adicionei um padding lateral para telas pequenas */
   color: white;
   font-family: 'Roboto Condensed', sans-serif;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 .greeting-text {
-  flex: 1; /* Ocupa o espaço flexível disponível */
-  min-width: 300px; /* Largura mínima para o bloco de texto antes de quebrar a linha */
+  min-width: 40%; /* Largura mínima para o bloco de texto antes de quebrar a linha */
+  /* 👇 ADICIONE uma largura máxima para o texto não ficar muito longo em telas grandes 👇 */
+  max-width: 60%; 
 }
 
 .greeting-image-container {
@@ -107,8 +107,6 @@
 .greeting-image {
   width: 100%;
   height: auto;
-  border-radius: 10px; /* Bordas arredondadas para a foto */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   object-fit: cover;
 }
 
@@ -120,19 +118,15 @@
   font-family: 'Dancing Script', cursive;
   line-height: 1.1;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  text-align: center;
 }
 
 /* Formatação do parágrafo da saudação */
 .greeting-text p {
-  font-size: 1rem;
-  margin-bottom: 15px;
-  line-height: 1.6;
-}
-
-
-/* Cor de fundo exclusiva para a seção do carrossel */
-.bg-carousel-custom {
-  background-color: #a37716;
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+  line-height: 1.2;
+  text-align: center;
 }
 
 /* Estilo para os títulos das seções (Nossos Deliciosos Doces, Nosso Cardápio) */

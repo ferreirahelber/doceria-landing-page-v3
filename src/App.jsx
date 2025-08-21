@@ -249,17 +249,25 @@ function App() {
           <div className="greeting-container">
             {/* Bloco de Texto */}
             <div className="greeting-text">
-              <h2>Bem-vindos à Dodoce's!</h2>
+              <h2>Sobre à Dodoce's!</h2>
               <p>
                 Sou uma empreendedora apaixonada por transformar ingredientes selecionados
-                em doces que encantam e conquistam paladares. Na Dodoce's, cada produto é
-                confeccionado de forma artesanal, com todo o carinho e dedicação, pensando
-                em levar até você uma experiência única. Cada sabor é cuidadosamente
-                escolhido para garantir a melhor qualidade e aquele gostinho de feito em casa.
+                em doces que encantam e conquistam paladares. 
+              </p>
+              <p>
+                Na Dodoce's, cada produto é confeccionado de forma artesanal, com todo o carinho e dedicação, pensando
+                em levar até você uma experiência única.
+              </p>
+              <p>
+                Cada sabor é cuidadosamente escolhido para garantir a melhor 
+                qualidade e aquele gostinho de feito em casa.
               </p>
               <p>
                 Se você busca doces que além de sabor trazem amor em cada pedaço, está no
-                lugar certo. Seja um bombom, um bolo ou qualquer outra delícia, tudo é
+                lugar certo. 
+              </p>
+              <p>  
+                Seja um bombom, um bolo ou qualquer outra delícia, tudo é
                 preparado como se fosse para alguém da família.
               </p>
               <p>
