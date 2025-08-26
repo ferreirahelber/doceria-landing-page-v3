@@ -72,7 +72,7 @@ const products = [
 function StackedCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0); // Índice do slide atual
   const [isAnimating, setIsAnimating] = useState(false); // Controla se está animando
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true); // Controla se o auto-play está ativo
+  const [isAutoPlaying] = useState(true); // Controla se o auto-play está ativo
   
   // Auto-play: avança automaticamente a cada 4 segundos
   useEffect(() => {
@@ -159,6 +159,7 @@ function StackedCarousel() {
               <img
                 src={item.cover}
                 alt={item.title}
+                loading="lazy" // Adicionado lazy loading
                 className="slide-image"
                 draggable={false}
               />
@@ -307,6 +308,7 @@ function App() {
                     <img
                       src={product.image}
                       alt={product.name}
+                      loading="lazy"
                       className="product-image cursor-pointer"
                       onClick={() => handleImageClick(product.image)}
                     />
@@ -371,6 +373,7 @@ function App() {
             <img
               src={enlargedImage}
               alt="Imagem ampliada"
+              loading="lazy" // Adicionado lazy loading
               className="max-w-full max-h-full object-contain rounded-lg"
             />
             <button
