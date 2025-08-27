@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Instagram, MessageCircle, X } from 'lucide-react';
 import './App.css';
 
-// IMPORTAR SUAS IMAGENS (substitua pelos nomes reais dos seus arquivos)
+// IMPORTAR SUAS IMAGENS 
+// Mantenha as imagens originais para o fallback
 import logo from './assets/logo.png';
+import logoWebp from './assets/logo.webp'; // IMPORTAÇÃO DA LOGO EM WEBP
 import doce1 from './assets/morangotrufado.jpeg';
 import doce2 from './assets/tacarecheada.jpeg';
 import doce3 from './assets/tacarecheada2.jpeg';
@@ -18,14 +20,31 @@ import sobremesa1 from './assets/morango2.jpeg';
 import sobremesa2 from './assets/morango3.jpeg';
 import karenBandeira from './assets/Doceira.png';
 
+// Importe as novas imagens .webp
+import doce1Webp from './assets/morangotrufado.webp';
+import doce2Webp from './assets/tacarecheada.webp';
+import doce3Webp from './assets/tacarecheada2.webp';
+import doce4Webp from './assets/fatiabolo.webp';
+import doce5Webp from './assets/conetrufado.webp';
+import doce6Webp from './assets/brownie.webp';
+import bolo1Webp from './assets/bombonsregionais.webp';
+import cupcake1Webp from './assets/bolopote01.webp';
+import brigadeiro1Webp from './assets/bolopote2.webp';
+import torta1Webp from './assets/morango1.webp';
+import sobremesa1Webp from './assets/morango2.webp';
+import sobremesa2Webp from './assets/morango3.webp';
+import karenBandeiraWebp from './assets/Doceira.webp';
+
+
 // DADOS DO CARROSSEL - Estrutura de dados para o novo carrossel
 const carouselData = [
-  { cover: doce1, title: "Morango Trufado" },
-  { cover: doce2, title: "Taça Recheada" },
-  { cover: doce3, title: "Taça Especial" },
-  { cover: doce4, title: "Fatia de Bolo" },
-  { cover: doce5, title: "Cone Trufado" },
-  { cover: doce6, title: "Brownie Gourmet" }
+  // Adicione a nova propriedade 'coverWebp' para o formato WebP
+  { cover: doce1, coverWebp: doce1Webp, title: "Morango Trufado" },
+  { cover: doce2, coverWebp: doce2Webp, title: "Taça Recheada" },
+  { cover: doce3, coverWebp: doce3Webp, title: "Taça Especial" },
+  { cover: doce4, coverWebp: doce4Webp, title: "Fatia de Bolo" },
+  { cover: doce5, coverWebp: doce5Webp, title: "Cone Trufado" },
+  { cover: doce6, coverWebp: doce6Webp, title: "Brownie Gourmet" }
 ];
 
 // PRODUTOS DO MENU
@@ -34,37 +53,43 @@ const products = [
     id: 1,
     name: "Bombons Variados",
     description: "Nossos bombons regionais são feitos com a polpa dos nossos frutos, temos: Bacuri, Cupuaçu. Temos támbem de Queijo Cuia, Brigadeiro Belga e o carro chefe Bombom de Morango.",
-    image: bolo1
+    image: bolo1,
+    imageWebp: bolo1Webp
   },
   {
     id: 2,
     name: "Cupcakes Gourmet",
     description: "Cupcakes coloridos e saborosos, perfeitos para festas e eventos. Diversos sabores e decorações criativas.",
-    image: cupcake1
+    image: cupcake1,
+    imageWebp: cupcake1Webp
   },
   {
     id: 3,
     name: "Brigadeiros Artesanais",
     description: "Brigadeiros gourmet com chocolate belga e coberturas especiais. Tradição brasileira com toque sofisticado.",
-    image: brigadeiro1
+    image: brigadeiro1,
+    imageWebp: brigadeiro1Webp
   },
   {
     id: 4,
     name: "Tortas Especiais",
     description: "Tortas doces com recheios cremosos e frutas frescas. Sobremesas irresistíveis para qualquer momento.",
-    image: torta1
+    image: torta1,
+    imageWebp: torta1Webp
   },
   {
     id: 5,
     name: "Doces Variados",
     description: "Seleção especial de doces tradicionais e modernos. Perfeitos para presentear ou saborear em família.",
-    image: sobremesa1
+    image: sobremesa1,
+    imageWebp: sobremesa1Webp
   },
   {
     id: 6,
     name: "Sobremesas Premium",
     description: "Sobremesas elaboradas com técnicas refinadas e ingredientes premium. Experiência gastronômica única.",
-    image: sobremesa2
+    image: sobremesa2,
+    imageWebp: sobremesa2Webp
   }
 ];
 
@@ -156,13 +181,20 @@ function StackedCarousel() {
             onClick={() => goToSlide(index)}
           >
             <div className="slide-content">
-              <img
-                src={item.cover}
-                alt={item.title}
-                loading="lazy" // Adicionado lazy loading
-                className="slide-image"
-                draggable={false}
-              />
+              {/* === MODIFICAÇÃO PARA USAR <picture> e <source> === */}
+              <picture>
+                {/* Fonte WebP com o novo caminho de arquivo */}
+                <source srcSet={item.coverWebp} type="image/webp" />
+                {/* Imagem original como fallback para navegadores não compatíveis */}
+                <img
+                  src={item.cover}
+                  alt={item.title}
+                  loading="lazy"
+                  className="slide-image"
+                  draggable={false}
+                />
+              </picture>
+              {/* ================================================= */}
               <div className="slide-overlay">
                 <h3 className="slide-title">{item.title}</h3>
               </div>
@@ -225,11 +257,16 @@ function App() {
         {/* container para alinhar o conteúdo */}
           <div className="header-container">
             {/* Logo — fica meio dentro e meio fora do fundo */}
-            <img 
-              src={logo} 
-              alt="Logo da Dodoce's" 
-              className="logo-header"
-            />
+            {/* === MODIFICAÇÃO PARA USAR <picture> e <source> === */}
+            <picture>
+              <source srcSet={logoWebp} type="image/webp" />
+              <img 
+                src={logo} 
+                alt="Logo da Dodoce's" 
+                className="logo-header"
+              />
+            </picture>
+            {/* ================================================= */}
             {/* Slogan — aparece ao lado da logo em telas grandes */}
             <div className="slogan-container">
               <span className="slogan-text">
@@ -279,11 +316,16 @@ function App() {
             
             {/* Bloco da Imagem */}
             <div className="greeting-image-container">
-              <img 
-                src={karenBandeira} 
-                alt="Karen Bandeira, a doceira" 
-                className="greeting-image"
-              />
+              {/* === MODIFICAÇÃO PARA USAR <picture> e <source> === */}
+              <picture>
+                <source srcSet={karenBandeiraWebp} type="image/webp" />
+                <img 
+                  src={karenBandeira} 
+                  alt="Karen Bandeira, a doceira" 
+                  className="greeting-image"
+                />
+              </picture>
+              {/* ================================================= */}
             </div>
           </div>
           {/* ================================================================== */}
@@ -305,13 +347,18 @@ function App() {
               >
                 <div className="flex">
                   <div className="w-1/3">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      loading="lazy"
-                      className="product-image cursor-pointer"
-                      onClick={() => handleImageClick(product.image)}
-                    />
+                    {/* === MODIFICAÇÃO PARA USAR <picture> e <source> === */}
+                    <picture>
+                      <source srcSet={product.imageWebp} type="image/webp" />
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        loading="lazy"
+                        className="product-image cursor-pointer"
+                        onClick={() => handleImageClick(product.image)}
+                      />
+                    </picture>
+                    {/* ================================================= */}
                   </div>
                   <div className="w-2/3 p-6">
                     <h3 className="product-card-title"> {/* Adicionada a classe 'product-card-title' para aplicar os estilos no App.css */}
@@ -370,12 +417,17 @@ function App() {
       {enlargedImage && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
           <div className="relative max-w-4xl max-h-full">
-            <img
-              src={enlargedImage}
-              alt="Imagem ampliada"
-              loading="lazy" // Adicionado lazy loading
-              className="max-w-full max-h-full object-contain rounded-lg"
-            />
+            {/* === MODIFICAÇÃO PARA USAR <picture> e <source> === */}
+            <picture>
+              <source srcSet={enlargedImage} type="image/webp" />
+              <img
+                src={enlargedImage}
+                alt="Imagem ampliada"
+                loading="lazy"
+                className="max-w-full max-h-full object-contain rounded-lg"
+              />
+            </picture>
+            {/* ================================================= */}
             <button
               onClick={closeEnlargedImage}
               className="absolute top-4 right-4 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full transition-all duration-200"
