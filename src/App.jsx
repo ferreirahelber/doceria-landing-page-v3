@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Instagram, MessageCircle, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Instagram, MessageCircle, X, MapPin, Bike } from 'lucide-react';
 import './App.css';
 
 // IMPORTAR SUAS IMAGENS 
@@ -371,6 +371,52 @@ function App() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+       {/* SEÇÃO ONDE NOS ENCONTRAR */}
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="section-title text-center mb-12">Onde nos Encontrar</h2>
+          <p className="text-center text-lg text-gray-700 mb-12">Escolha a melhor forma de saborear nossos doces!</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+            {/* Card do Quiosque Físico */}
+            <div className="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center text-center transition-all duration-300 hover:shadow-xl hover:scale-105">
+              <MapPin size={48} className="text-pink-500 mb-4" />
+              <h3 className="text-2xl font-bold text-gray-800 mb-2">Nosso Quiosque</h3>
+              <p className="text-gray-600 mb-4">Rua São Diogo - Largo São João - Cidade Velha, Belém - PA, 66020-260</p>
+              <p className="text-gray-600 mb-6"><strong>Horário:</strong> Segunda a Sexta: 8h às 15h</p>
+              <a
+                href="https://maps.app.goo.gl/E6LbxkCxdCJ8WUiX6" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-pink-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-pink-600 transition-colors duration-300 flex items-center space-x-2"
+              >
+                <MapPin size={20} />
+                <span>Ver no Mapa</span>
+              </a>
+              <p className="text-sm text-gray-500 mt-4">Venha nos visitar e sinta o aroma dos nossos doces fresquinhos!</p>
+            </div>
+
+            {/* Card de Delivery e Retirada */}
+            <div className="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center text-center transition-all duration-300 hover:shadow-xl hover:scale-105">
+              <Bike size={48} className="text-purple-500 mb-4" />
+              <h3 className="text-2xl font-bold text-gray-800 mb-2">Delivery e Retirada</h3>
+              <p className="text-gray-600 mb-4">Peça pelo WhatsApp e receba no conforto da sua casa!</p>
+              <p className="text-gray-600 mb-6"><strong>Atendimento:</strong> Segunda a Sexta: 8h às 18h</p>
+              <a
+                href="https://wa.me/5591982875970"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-green-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-green-600 transition-colors duration-300 flex items-center space-x-2"
+              >
+                <MessageCircle size={20} />
+                <span>Pedir por WhatsApp</span>
+              </a>
+              <p className="text-sm text-gray-500 mt-4">Conveniência e sabor na sua porta ou para levar!</p>
+            </div>
           </div>
         </div>
       </section>
