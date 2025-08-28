@@ -546,3 +546,66 @@
     max-width: 90%; /* Ajusta a largura máxima para telas menores */
   }
 }
+
+
+/* Estilo para o preço dos produtos nos cards */
+.product-card-price {
+  font-family: "Roboto Condensed", sans-serif;
+  color: #008000; /* Um verde para destacar o preço */
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+
+/* ESTILOS PARA A SEÇÃO DE FORMULÁRIO DE PEDIDO */
+.bg-pink-100 {
+  background-color: #fce7f3; /* Um rosa bem claro para o fundo da seção do formulário */
+}
+
+.form-checkbox:checked {
+  background-color: #ec4899; /* Cor de fundo do checkbox quando selecionado */
+  border-color: #ec4899; /* Cor da borda do checkbox quando selecionado */
+}
+
+.form-checkbox:focus {
+  outline: none; /* Remove o outline padrão ao focar */
+  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.4); /* Adiciona um box-shadow personalizado ao focar */
+}
+
+/* Estilos para os inputs e textareas */
+.shadow.appearance-none.border.rounded.w-full.py-3.px-4.text-gray-700.leading-tight.focus\:outline-none.focus\:shadow-outline {
+  border-color: #d1d5db; /* Cor da borda padrão */
+}
+
+.shadow.appearance-none.border.rounded.w-full.py-3.px-4.text-gray-700.leading-tight.focus\:outline-none.focus\:shadow-outline:focus {
+  border-color: #ec4899; /* Cor da borda ao focar */
+}
+
+/* ESTILOS PARA O BOTÃO FLUTUANTE DO WHATSAPP */
+.whatsapp-float-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366; /* Cor do WhatsApp */
+  color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.whatsapp-float-button:hover {
+  background-color: #1da851;
+  transform: scale(1.1);
+}
+
+.whatsapp-float-button svg {
+  fill: white; /* Garante que o ícone seja branco */
+}
