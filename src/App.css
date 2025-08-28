@@ -551,7 +551,7 @@
 /* Estilo para o preço dos produtos nos cards */
 .product-card-price {
   font-family: "Roboto Condensed", sans-serif;
-  color: #008000; /* Um verde para destacar o preço */
+  color: #ec4899; /* Cor do preço */
   font-size: 1.125rem;
   font-weight: bold;
   margin-top: 0.5rem;

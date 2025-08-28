@@ -11,7 +11,7 @@ import doce2 from './assets/tacarecheada.jpeg';
 import doce3 from './assets/tacarecheada2.jpeg';
 import doce4 from './assets/fatiabolo.png';
 import doce5 from './assets/conetrufado.jpg';
-import doce6 from './assets/brownie.jpg';
+import doce6 from './assets/brownie.jpeg';
 import bolo1 from './assets/bombonsregionais.jpeg';
 import cupcake1 from './assets/bolopote01.jpg';
 import brigadeiro1 from './assets/bolopote2.jpeg';
@@ -477,7 +477,7 @@ function App() {
               <p className="text-gray-600 mb-4">Rua São Diogo - Largo São João - Cidade Velha, Belém - PA, 66020-260</p>
               <p className="text-gray-600 mb-6"><strong>Horário:</strong> Segunda a Sexta: 8h às 15h</p>
               <a
-                href="https://maps.app.goo.gl/E6LbxkCxdCJ8WUiX6" 
+                href="https://maps.google.com/?cid=11785926177748043221&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNl" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-pink-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-pink-600 transition-colors duration-300 flex items-center space-x-2"
@@ -491,7 +491,7 @@ function App() {
             {/* Card de Delivery e Retirada */}
             <div className="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center text-center transition-all duration-300 hover:shadow-xl hover:scale-105">
               <Bike size={48} className="text-purple-500 mb-4" />
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">Delivery e Retirada</h3>
+              <h3 className="text-2xl font-bold text-gray-800 mb-2">Delivery e retirada</h3>
               <p className="text-gray-600 mb-4">Peça pelo WhatsApp e receba no conforto da sua casa!</p>
               <p className="text-gray-600 mb-6"><strong>Atendimento:</strong> Segunda a Sábado: 9h às 17h</p>
               <a
@@ -512,13 +512,13 @@ function App() {
       {/* SEÇÃO DE FORMULÁRIO DE PEDIDO */}
       <section className="py-12 bg-pink-100">
         <div className="container mx-auto px-4">
-          <h2 className="section-title text-center mb-12">Faça Seu Pedido!</h2>
+          <h2 className="section-title text-center mb-12">Faça seu pedido!</h2>
           <p className="text-center text-lg text-gray-700 mb-12">Preencha o formulário abaixo e envie seu pedido diretamente para nosso WhatsApp!</p>
 
           <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-8">
             <form onSubmit={handleOrderSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">Seu Nome:</label>
+                <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">Seu nome:</label>
                 <input
                   type="text"
                   id="name"
@@ -544,7 +544,7 @@ function App() {
                 />
               </div>
               <div>
-                <label className="block text-gray-700 text-sm font-bold mb-2">Selecione os Produtos:</label>
+                <label className="block text-gray-700 text-sm font-bold mb-2">Selecione os produtos:</label>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {products.map((product) => (
                     <div key={product.id} className="flex items-center space-x-3">
@@ -579,7 +579,7 @@ function App() {
                   className="bg-green-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-green-600 transition-colors duration-300 flex items-center space-x-3"
                 >
                   <MessageCircle size={24} />
-                  <span>Enviar Pedido via WhatsApp</span>
+                  <span>Enviar pedido via WhatsApp</span>
                 </button>
               </div>
             </form>
@@ -590,7 +590,7 @@ function App() {
       {/* SEÇÃO DE DEPOIMENTOS */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="section-title text-center mb-12">O Que Nossos Clientes Dizem</h2>
+          <h2 className="section-title text-center mb-12">O que nossos clientes dizem</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {testimonialsData.map((testimonial) => (
               <div key={testimonial.id} className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl shadow-lg p-6 flex flex-col items-center text-center transition-all duration-300 hover:shadow-xl hover:scale-105">
@@ -615,7 +615,7 @@ function App() {
       <footer className="bg-[#72c5c4] text-white py-4">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <h3 className="text-2xl font-bold mb-6">Entre em Contato</h3>
+            <h3 className="text-2xl font-bold mb-6">Entre em contato</h3>
             <p className="text-lg mb-8">Siga-nos nas redes sociais e faça seu pedido!</p>
             
             <div className="flex justify-center space-x-8">
