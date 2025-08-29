@@ -7,7 +7,7 @@ import './App.css';
 import logo from './assets/logo.png';
 import logoWebp from './assets/logo.webp'; // IMPORTAÇÃO DA LOGO EM WEBP
 import doce1 from './assets/morangotrufado.jpeg';
-import doce2 from './assets/tacarecheada.jpeg';
+import doce2 from './assets/bolo_stitch2.jpeg';
 import doce3 from './assets/tacarecheada2.jpeg';
 import doce4 from './assets/fatiabolo.png';
 import doce5 from './assets/conetrufado.jpg';
@@ -22,7 +22,7 @@ import karenBandeira from './assets/Doceira.png';
 
 // Importe as novas imagens .webp
 import doce1Webp from './assets/morangotrufado.webp';
-import doce2Webp from './assets/tacarecheada.webp';
+import doce2Webp from './assets/bolo_stitch2.webp';
 import doce3Webp from './assets/tacarecheada2.webp';
 import doce4Webp from './assets/fatiabolo.webp';
 import doce5Webp from './assets/conetrufado.webp';
@@ -40,7 +40,7 @@ import karenBandeiraWebp from './assets/Doceira.webp';
 const carouselData = [
   // Adicione a nova propriedade 'coverWebp' para o formato WebP
   { cover: doce1, coverWebp: doce1Webp, title: "Morango Trufado" },
-  { cover: doce2, coverWebp: doce2Webp, title: "Taça Recheada" },
+  { cover: doce2, coverWebp: doce2Webp, title: "Bolo Personalizado" },
   { cover: doce3, coverWebp: doce3Webp, title: "Taça Especial" },
   { cover: doce4, coverWebp: doce4Webp, title: "Fatia de Bolo" },
   { cover: doce5, coverWebp: doce5Webp, title: "Cone Trufado" },
