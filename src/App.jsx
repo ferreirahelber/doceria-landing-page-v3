@@ -268,6 +268,7 @@ function StackedCarousel() {
 
 function App() {
   const [enlargedImage, setEnlargedImage] = useState(null);
+  const [showAllProducts, setShowAllProducts] = useState(false);
 
   const handleImageClick = (image) => {
     setEnlargedImage(image);
@@ -422,15 +423,15 @@ function App() {
       {/* MENU DE PRODUTOS */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="section-title"> {/* Adicionada a classe 'section-title' para aplicar os estilos no App.css */}
-            Nossos Produtos
+          <h2 className="section-title">
+            Nossos produtos em destaque
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {products.map((product) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {products.slice(0, showAllProducts ? products.length : 6).map((product) => (
               <div
                 key={product.id}
-                className="bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105"
+                className="bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105"
               >
                 <div className="flex">
                   <div className="w-1/3">
@@ -448,10 +449,10 @@ function App() {
                     {/* ================================================= */}
                   </div>
                   <div className="w-2/3 p-6">
-                    <h3 className="product-card-title"> {/* Adicionada a classe 'product-card-title' para aplicar os estilos no App.css */}
+                    <h3 className="product-card-title">
                       {product.name}
                     </h3>
-                    <p className="product-card-description"> {/* Adicionada a classe 'product-card-description' para aplicar os estilos no App.css */}
+                    <p className="product-card-description">
                       {product.description}
                     </p>
                     <p className="product-card-price">{product.price}</p>
@@ -460,6 +461,17 @@ function App() {
               </div>
             ))}
           </div>
+
+          {!showAllProducts && (
+            <div className="text-center mt-12">
+              <button
+                onClick={() => setShowAllProducts(true)}
+                className="bg-[#72c5c4] text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-[#5daea8] transition-colors duration-300"
+              >
+                Ver mais produtos
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
