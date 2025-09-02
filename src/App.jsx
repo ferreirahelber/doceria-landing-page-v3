@@ -442,7 +442,7 @@ function App() {
                         src={product.image}
                         alt={product.name}
                         loading="lazy"
-                        className="product-image cursor-pointer"
+                        className="product-image cursor-pointer rounded-xl"
                         onClick={() => handleImageClick(product.image)}
                       />
                     </picture>
