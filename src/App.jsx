@@ -19,9 +19,10 @@ import bolo1 from './assets/bombonsregionais.jpeg';
 import cupcake1 from './assets/bolopote01.jpg';
 import brigadeiro1 from './assets/bolopote2.jpeg';
 import torta1 from './assets/morango1.jpeg';
-import sobremesa1 from './assets/morango2.jpeg';
+//import sobremesa1 from './assets/morango2.jpeg';
 import sobremesa2 from './assets/morango3.jpeg';
 import karenBandeira from './assets/Doceira.png';
+import bolomoana from './assets/bolo_moana.jpeg';
 
 // Importe as novas imagens .webp
 import doce1Webp from './assets/morangotrufado.webp';
@@ -34,10 +35,10 @@ import bolo1Webp from './assets/bombonsregionais.webp';
 import cupcake1Webp from './assets/bolopote01.webp';
 import brigadeiro1Webp from './assets/bolopote2.webp';
 import torta1Webp from './assets/morango1.webp';
-import sobremesa1Webp from './assets/morango2.webp';
+//import sobremesa1Webp from './assets/morango2.webp';
 import sobremesa2Webp from './assets/morango3.webp';
 import karenBandeiraWebp from './assets/Doceira.webp';
-
+import bolomoanaWebp from './assets/bolo_moana.webp';
 
 // DADOS DO CARROSSEL
 const carouselData = [
@@ -61,43 +62,43 @@ const products = [
   },
   {
     id: 2,
-    name: "Cupcakes Gourmet",
-    description: "Cupcakes coloridos e saborosos, perfeitos para festas e eventos. Diversos sabores e decorações criativas.",
+    name: "Cake Pote Tradicional",
+    description: "Cake Pote coloridos e saborosos, perfeitos para festas e eventos. Diversos sabores e decorações criativas.",
     image: cupcake1,
     imageWebp: cupcake1Webp,
     price: "R$ 12,00 (unidade)"
   },
   {
     id: 3,
-    name: "Brigadeiros Artesanais",
-    description: "Brigadeiros gourmet com chocolate belga e coberturas especiais. Tradição brasileira com toque sofisticado.",
+    name: "Cake Pote Gourmet",
+    description: "Cake Porte gourmet com chocolate belga e coberturas especiais.",
     image: brigadeiro1,
     imageWebp: brigadeiro1Webp,
-    price: "R$ 4,50 (unidade)"
-  },
-  {
-    id: 4,
-    name: "Tortas Especiais",
-    description: "Tortas doces com recheios cremosos e frutas frescas. Sobremesas irresistíveis para qualquer momento.",
-    image: torta1,
-    imageWebp: torta1Webp,
-    price: "R$ 80,00 (kg)"
-  },
-  {
-    id: 5,
-    name: "Doces Variados",
-    description: "Seleção especial de doces tradicionais e modernos. Perfeitos para presentear ou saborear em família.",
-    image: sobremesa1,
-    imageWebp: sobremesa1Webp,
     price: "R$ 15,00 (unidade)"
   },
   {
+    id: 4,
+    name: "Morango Trufado",
+    description: "Morangos selecionados coberto por chocolate belga. Sobremesa irresistível para qualquer momento.",
+    image: torta1,
+    imageWebp: torta1Webp,
+    price: "R$ 12,00 (unidade)"
+  },
+  {
+    id: 5,
+    name: "Bolos Personalizados",
+    description: "Seleção especial de bolos personalizados e modernos. Perfeitos para momentos inesquecivéis.",
+    image: bolomoana,
+    imageWebp: bolomoanaWebp,
+    price: "Entre em contato para orçamento"
+  },
+  {
     id: 6,
-    name: "Sobremesas Premium",
+    name: "Morango do Amor",
     description: "Sobremesas elaboradas com técnicas refinadas e ingredientes premium. Experiência gastronômica única.",
     image: sobremesa2,
     imageWebp: sobremesa2Webp,
-    price: "R$ 25,00 (unidade)"
+    price: "R$ 15,00 (unidade)"
   }
   // Adicione mais produtos aqui se desejar. Eles aparecerão no modal.
 ];

@@ -115,3 +115,110 @@
   from { transform: translateY(50px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
+
+/* Estilo para o container da descrição */
+.product-description-container {
+  position: relative; /* Essencial para o posicionamento do tooltip */
+  margin: 5px 0;
+}
+
+/* Estilo para a descrição que fica sempre visível (o texto cortado) */
+.product-description-truncated {
+  font-size: 0.8rem;
+  color: #666;
+  /* Garante que o texto seja cortado com "..." se for muito longo */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: help; /* Muda o cursor para indicar que há mais informação */
+}
+
+/* Estilo para o tooltip (a descrição completa que aparece no hover) */
+.product-description-tooltip {
+  display: none; /* Começa escondido */
+  position: absolute;
+  bottom: 125%; /* Posiciona o tooltip acima da descrição */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  width: 200px; /* Largura do tooltip */
+  z-index: 10;
+  text-align: left;
+  opacity: 0; /* Começa invisível para a animação */
+  transition: opacity 0.3s ease;
+  pointer-events: none; /* Impede que o tooltip interfira com o mouse */
+}
+
+/* Efeito de seta no tooltip */
+.product-description-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+/* Lógica para mostrar o tooltip:
+   1. No hover do mouse (desktop)
+   2. Quando a classe .active está presente (toque no mobile) */
+.product-description-container:hover .product-description-tooltip,
+.product-description-tooltip.active {
+  display: block;
+  opacity: 1;
+  pointer-events: auto; /* Permite que o usuário possa interagir com o tooltip se necessário */
+}
+
+/* Estilo para o texto cortado, agora usando flexbox para alinhar com o ícone */
+
+/* O container flexbox que alinha o texto e o ícone */
+.product-description-truncated {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: help;
+  width: 100%; /* Garante que o container ocupe todo o espaço */
+}
+
+/* O span que contém o texto e que será efetivamente truncado */
+.description-text {
+  font-size: 0.8rem;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* Impede que o texto cresça infinitamente */
+  min-width: 0;
+}
+
+/* O ícone, sem alterações significativas */
+.info-icon {
+  color: #aaa;
+  flex-shrink: 0; /* Impede que o ícone seja espremido */
+}
+
+/* Estilo para o texto de ajuda dentro do tooltip */
+.tooltip-help-text {
+  display: block; /* Faz com que o texto fique em sua própria linha */
+  font-size: 0.7rem;
+  color: #ccc;
+  font-style: italic;
+  margin-bottom: 8px; /* Espaço entre o texto de ajuda e a descrição principal */
+  border-bottom: 1px solid #555; /* Linha separadora */
+  padding-bottom: 6px;
+}
+
+/* Lógica para esconder o texto de ajuda em desktops (onde o hover é suficiente) */
+@media (hover: hover) and (pointer: fine) {
+  .tooltip-help-text {
+    display: none; /* Esconde a mensagem "(Clique para fechar)" em dispositivos com mouse */
+  }
+}
+
