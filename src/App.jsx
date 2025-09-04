@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Instagram, MessageCircle, X, MapPin, Bike } from 'lucide-react';
+import FocusLock from 'react-focus-lock';
+import { Instagram, MessageCircle, X, MapPin, Bike } from 'lucide-react';
 import './App.css';
 
 // IMPORTAÇÃO DO NOVO COMPONENTE DE MODAL
 import ProductModal from './components/ProductModal'; // Certifique-se que o caminho está correto
+
+// IMPORTAÇÃO DO COMPONENTE DE CARROSSEL
+import StackedCarousel from './StackedCarousel';
 
 // IMPORTAR SUAS IMAGENS
 // Mantenha as imagens originais para o fallback
@@ -110,91 +114,6 @@ const testimonialsData = [
   { id: 3, name: "Mariana Silva", text: "Sou cliente fiel dos cupcakes da Dodoce's. São super fofinhos e com recheios incríveis. Perfeitos para qualquer ocasião!", rating: 4 },
 ];
 
-// COMPONENTE DO CARROSSEL CUSTOMIZADO (sem alterações)
-function StackedCarousel() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [isAutoPlaying] = useState(true);
-  
-  useEffect(() => {
-    if (!isAutoPlaying || isAnimating) return;
-    const interval = setInterval(() => {
-      setIsAnimating(true);
-      setCurrentIndex((prev) => (prev + 1) % carouselData.length);
-      setTimeout(() => setIsAnimating(false), 500);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [isAutoPlaying, isAnimating]);
-  
-  const goNext = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrentIndex((prev) => (prev + 1) % carouselData.length);
-    setTimeout(() => setIsAnimating(false), 500);
-  };
-  
-  const goPrev = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrentIndex((prev) => (prev - 1 + carouselData.length) % carouselData.length);
-    setTimeout(() => setIsAnimating(false), 500);
-  };
-  
-  const goToSlide = (index) => {
-    if (isAnimating || index === currentIndex) return;
-    setIsAnimating(true);
-    setCurrentIndex(index);
-    setTimeout(() => setIsAnimating(false), 500);
-  };
-  
-  const getSlideStyle = (index) => {
-    let diff = index - currentIndex;
-    const totalSlides = carouselData.length;
-    if (diff > totalSlides / 2) diff -= totalSlides;
-    else if (diff < -totalSlides / 2) diff += totalSlides;
-    
-    const absIndex = Math.abs(diff);
-    let translateX = diff * 120;
-    let scale = Math.max(1 - absIndex * 0.15, 0.7);
-    let zIndex = carouselData.length - absIndex;
-    let opacity = absIndex > 2 ? 0 : 1 - absIndex * 0.3;
-    
-    return {
-      transform: `translateX(${translateX}px) scale(${scale})`,
-      zIndex: zIndex,
-      opacity: opacity,
-      transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-    };
-  };
-  
-  return (
-    <div className="stacked-carousel-container">
-      <div className="stacked-carousel-track">
-        {carouselData.map((item, index) => (
-          <div key={index} className={`stacked-slide ${index === currentIndex ? 'active' : ''}`} style={getSlideStyle(index)} onClick={() => goToSlide(index)}>
-            <div className="slide-content">
-              <picture>
-                <source srcSet={item.coverWebp} type="image/webp" />
-                <img src={item.cover} alt={item.title} loading="lazy" className="slide-image" draggable={false} />
-              </picture>
-              <div className="slide-overlay">
-                <h3 className="slide-title">{item.title}</h3>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-      <button className="carousel-nav-button carousel-nav-left" onClick={goPrev} disabled={isAnimating} aria-label="Slide anterior"><ChevronLeft size={24} /></button>
-      <button className="carousel-nav-button carousel-nav-right" onClick={goNext} disabled={isAnimating} aria-label="Próximo slide"><ChevronRight size={24} /></button>
-      <div className="carousel-indicators">
-        {carouselData.map((_, index) => (
-          <button key={index} className={`carousel-indicator ${index === currentIndex ? 'active' : ''}`} onClick={() => goToSlide(index)} disabled={isAnimating} aria-label={`Ir para slide ${index + 1}`} />
-        ))}
-      </div>
-    </div>
-  );
-}
-
 function App() {
   const [enlargedImage, setEnlargedImage] = useState(null);
   
@@ -230,6 +149,23 @@ function App() {
     window.open(whatsappUrl, '_blank');
     setOrderForm({ name: '', phone: '', products: {}, message: '' });
   };
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        if (isProductModalOpen) {
+          setProductModalOpen(false);
+        } else if (enlargedImage) {
+          setEnlargedImage(null);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isProductModalOpen, enlargedImage]);
 
   return (
     <div className="min-h-screen">
@@ -250,7 +186,7 @@ function App() {
       {/* CARROSSEL */}
       <section className="py-12">
         <div className="container mx-auto px-4">
-          <StackedCarousel />
+          <StackedCarousel data={carouselData} />
         </div>
         <div className="greeting-container">
           <div className="greeting-text">
@@ -425,15 +361,25 @@ function App() {
 
       {/* MODAL PARA IMAGEM AMPLIADA */}
       {enlargedImage && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-          <div className="relative max-w-4xl max-h-full">
-            <img src={enlargedImage} alt="Imagem ampliada" className="max-w-full max-h-full object-contain rounded-lg" />
-            <button onClick={closeEnlargedImage} className="absolute top-4 right-4 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full transition-all duration-200">
-              <X size={24} />
-            </button>
+        <FocusLock>
+          <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+            <div className="relative max-w-4xl max-h-full">
+              <img
+                src={enlargedImage}
+                alt="Imagem ampliada"
+                className="max-w-full max-h-full object-contain rounded-lg"
+              />
+              <button
+                onClick={closeEnlargedImage}
+                className="absolute top-4 right-4 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full transition-all duration-200"
+                aria-label="Fechar imagem ampliada"
+              >
+                <X size={24} />
+              </button>
+            </div>
           </div>
-        </div>
-       )}
+        </FocusLock>
+      )}
 
       {/* BOTÃO FLUTUANTE DO WHATSAPP */}
       <a href="https://wa.me/5591982875970" target="_blank" rel="noopener noreferrer" className="whatsapp-float-button" aria-label="Fale conosco pelo WhatsApp">

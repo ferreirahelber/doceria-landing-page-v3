@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { X, Info } from 'lucide-react'; 
+import FocusLock from 'react-focus-lock';
 import './ProductModal.css';
 
 const ProductCard = ({ product }) => {
@@ -66,25 +67,27 @@ const ProductModal = ({ products, show, onClose }) => {
   }
 
   return (
-    <div className="modal-portal" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button onClick={onClose} className="modal-close-button">
-          <X size={30} />
-        </button>
+    <FocusLock>
+      <div className="modal-portal" onClick={onClose}>
+        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <button onClick={onClose} className="modal-close-button" aria-label="Fechar lista de produtos">
+            <X size={30} />
+          </button>
 
-        <div className="modal-header">
-          <h2 className="modal-title">Todos os Produtos</h2>
-        </div>
+          <div className="modal-header">
+            <h2 className="modal-title">Todos os Produtos</h2>
+          </div>
 
-        <div className="modal-body">
-          <div className="products-grid">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+          <div className="modal-body">
+            <div className="products-grid">
+              {products.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </FocusLock>
   );
 };
 
