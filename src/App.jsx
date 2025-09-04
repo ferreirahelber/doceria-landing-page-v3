@@ -116,7 +116,7 @@ const testimonialsData = [
 
 function App() {
   const [enlargedImage, setEnlargedImage] = useState(null);
-  
+
   // === MODIFICAÇÃO 1: NOVO ESTADO PARA O MODAL DE PRODUTOS ===
   const [isProductModalOpen, setProductModalOpen] = useState(false);
 
@@ -125,30 +125,68 @@ function App() {
 
   const [orderForm, setOrderForm] = useState({ name: '', phone: '', products: {}, message: '' });
 
-  const handleOrderChange = (e) => {
-    const { name, value } = e.target;
-    setOrderForm((prev) => ({ ...prev, [name]: value }));
+  // Função para lidar com a SELEÇÃO (clique no checkbox)
+  const handleProductSelectionChange = (productName) => {
+    setOrderForm((prev) => {
+      const newProducts = { ...prev.products };
+
+      // Se o produto já está na lista, removê-lo (desmarcar)
+      if (newProducts[productName]) {
+        delete newProducts[productName];
+      } else {
+        // Se não está, adicioná-lo com quantidade inicial 1
+        newProducts[productName] = 1;
+      }
+
+      return { ...prev, products: newProducts };
+    });
   };
 
-  const handleProductChange = (e) => {
-    const { name, checked } = e.target;
-    setOrderForm((prev) => ({ ...prev, products: { ...prev.products, [name]: checked } }));
+  // Nova função para lidar com a MUDANÇA DE QUANTIDADE
+  const handleQuantityChange = (productName, quantity) => {
+    // A quantidade vem como string do <select>, então convertemos para número
+    const numQuantity = parseInt(quantity, 10);
+
+    setOrderForm((prev) => ({
+      ...prev,
+      products: {
+        ...prev.products,
+        [productName]: numQuantity,
+      },
+    }));
   };
+
+  // App.js
 
   const handleOrderSubmit = (e) => {
     e.preventDefault();
-    const selectedProducts = Object.keys(orderForm.products).filter((pName) => orderForm.products[pName]).map((pName) => {
-      const product = products.find((p) => p.name === pName);
-      return `- ${pName} (${product ? product.price : 'Preço indisponível'})`;
-    }).join('\n');
+
+    const selectedProducts = Object.entries(orderForm.products)
+      .map(([productName, quantity]) => {
+        const product = products.find((p) => p.name === productName);
+        // Se for o bolo personalizado, não mostra a quantidade
+        if (product.price === "Entre em contato para orçamento") {
+          return `- ${productName}`;
+        }
+        // Para os outros, mostra a quantidade
+        return `- ${productName} (Qtd: ${quantity})`;
+      })
+      .join('\n');
+
+    // O resto da função continua igual
     let whatsappMessage = `Olá, meu nome é ${orderForm.name} e gostaria de fazer um pedido.\n\n`;
-    if (selectedProducts) whatsappMessage += `*Produtos selecionados:*\n${selectedProducts}\n\n`;
-    if (orderForm.message) whatsappMessage += `*Observações:* ${orderForm.message}\n\n`;
+    if (selectedProducts) {
+      whatsappMessage += `*Produtos selecionados:*\n${selectedProducts}\n\n`;
+    }
+    if (orderForm.message) {
+      whatsappMessage += `*Observações:* ${orderForm.message}\n\n`;
+    }
     whatsappMessage += `Meu WhatsApp para contato: ${orderForm.phone}\n\nAguardando seu retorno!`;
-    const whatsappUrl = `https://wa.me/5591982875970?text=${encodeURIComponent(whatsappMessage )}`;
+    const whatsappUrl = `https://wa.me/5591982875970?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappUrl, '_blank');
     setOrderForm({ name: '', phone: '', products: {}, message: '' });
   };
+
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
@@ -169,7 +207,7 @@ function App() {
 
   return (
     <div className="min-h-screen">
-      
+
       {/* CABEÇALHO */}
       <header className="bg-header-background relative shadow-lg">
         <div className="header-container">
@@ -212,7 +250,7 @@ function App() {
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="section-title">Nossos produtos em destaque</h2>
-          
+
           {/* === MODIFICAÇÃO 2: A LISTA AGORA MOSTRA APENAS 6 ITENS === */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {products.slice(0, 6).map((product) => (
@@ -285,26 +323,67 @@ function App() {
             <form onSubmit={handleOrderSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">Seu nome:</label>
-                <input type="text" id="name" name="name" value={orderForm.name} onChange={handleOrderChange} className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Seu nome completo" required />
+                {/* A função handleOrderChange aqui está errada, deveria ser parte da lógica do App.js, não do JSX */}
+                <input type="text" id="name" name="name" value={orderForm.name} onChange={(e) => setOrderForm((prev) => ({ ...prev, name: e.target.value }))} className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Seu nome completo" required />
               </div>
               <div>
                 <label htmlFor="phone" className="block text-gray-700 text-sm font-bold mb-2">Seu WhatsApp:</label>
-                <input type="tel" id="phone" name="phone" value={orderForm.phone} onChange={handleOrderChange} className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="(99 ) 99999-9999" required />
+                <input type="tel" id="phone" name="phone" value={orderForm.phone} onChange={(e) => setOrderForm((prev) => ({ ...prev, phone: e.target.value }))} className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="(99) 99999-9999" required />
               </div>
+
+              {/* ================================================================= */}
+              {/* ▼▼▼ ESTE É O BLOCO DE CÓDIGO ATUALIZADO ▼▼▼ */}
+              {/* ================================================================= */}
               <div>
                 <label className="block text-gray-700 text-sm font-bold mb-2">Selecione os produtos:</label>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {products.map((product) => (
-                    <div key={product.id} className="flex items-center space-x-3">
-                      <input type="checkbox" id={`product-${product.id}`} name={product.name} checked={orderForm.products[product.name] || false} onChange={handleProductChange} className="form-checkbox h-5 w-5 text-pink-500 rounded" />
-                      <label htmlFor={`product-${product.id}`} className="text-gray-700">{product.name} - {product.price}</label>
-                    </div>
-                  ))}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                  {products.map((product) => {
+                    const isSelected = !!orderForm.products[product.name];
+                    const showQuantitySelector = isSelected && product.price !== "Entre em contato para orçamento";
+
+                    return (
+                      <div key={product.id} className="flex items-center justify-between">
+                        {/* Container para Checkbox e Label */}
+                        <div className="flex items-center">
+                          <input
+                            type="checkbox"
+                            id={`product-${product.id}`}
+                            name={product.name}
+                            checked={isSelected}
+                            onChange={() => handleProductSelectionChange(product.name)}
+                            className="form-checkbox h-5 w-5 text-pink-500 rounded"
+                          />
+                          <label htmlFor={`product-${product.id}`} className="text-gray-700 ml-3">
+                            {product.name} - {product.price}
+                          </label>
+                        </div>
+
+                        {/* Seletor de Quantidade (aparece condicionalmente) */}
+                        {showQuantitySelector && (
+                          <div className="flex items-center">
+                            <label htmlFor={`quantity-${product.id}`} className="text-sm mr-2">Qtd:</label>
+                            <select
+                              id={`quantity-${product.id}`}
+                              value={orderForm.products[product.name]}
+                              onChange={(e) => handleQuantityChange(product.name, e.target.value)}
+                              className="border border-gray-300 rounded-md p-1 text-sm"
+                            >
+                              {/* Gera as opções de 1 a 10 */}
+                              {[...Array(10).keys()].map(i => (
+                                <option key={i + 1} value={i + 1}>{i + 1}</option>
+                              ))}
+                            </select>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
+
               <div>
                 <label htmlFor="message" className="block text-gray-700 text-sm font-bold mb-2">Observações (opcional):</label>
-                <textarea id="message" name="message" value={orderForm.message} onChange={handleOrderChange} rows="4" className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Ex: Sem lactose, para presente, etc."></textarea>
+                <textarea id="message" name="message" value={orderForm.message} onChange={(e) => setOrderForm((prev) => ({ ...prev, message: e.target.value }))} rows="4" className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Ex: Sem lactose, para presente, etc."></textarea>
               </div>
               <div className="flex justify-center">
                 <button type="submit" className="bg-green-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-green-600 transition-colors duration-300 flex items-center space-x-3">
@@ -315,6 +394,7 @@ function App() {
           </div>
         </div>
       </section>
+
 
       {/* SEÇÃO DE DEPOIMENTOS */}
       <section className="py-12 bg-white">
@@ -328,7 +408,7 @@ function App() {
                 {testimonial.rating && (
                   <div className="flex mt-2">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279L12 18.896l-7.416 3.817 1.48-8.279L.001 9.306l8.332-1.151L12 .587z"/></svg>
+                      <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279L12 18.896l-7.416 3.817 1.48-8.279L.001 9.306l8.332-1.151L12 .587z" /></svg>
                     ))}
                   </div>
                 )}
@@ -387,9 +467,9 @@ function App() {
       </a>
 
       {/* === MODIFICAÇÃO 4: RENDERIZAÇÃO DO NOVO MODAL DE PRODUTOS === */}
-      <ProductModal 
-        show={isProductModalOpen} 
-        onClose={( ) => setProductModalOpen(false)}
+      <ProductModal
+        show={isProductModalOpen}
+        onClose={() => setProductModalOpen(false)}
         products={products}
       />
 
